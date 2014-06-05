@@ -1,1 +1,1 @@
-mvn dependency:resolve -DincludeClassifierss="javadocs,sources"
+mvn dependency:resolve -DincludeClassifiers="javadocs,sources"
