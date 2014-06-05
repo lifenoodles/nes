@@ -10,10 +10,14 @@ public class MainForm {
     private JFrame frame = new JFrame("NubNES");
 
     // auto generated identifiers
-    private JPanel MainPanel;
+    private JPanel mainPanel;
 
     public MainForm() {
-        frame.setContentPane(MainPanel);
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(new JMenu("File"));
+        frame.setJMenuBar(menuBar);
+
+        frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.pack();
     }
