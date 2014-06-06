@@ -7,7 +7,10 @@ import java.io.File;
 
 public class FileLoaderTest extends TestCase {
     public void testLoadROM() {
-        File nesFile = new File("filename");
+        File nesFile = new File("nes.iws");
+        if (!nesFile.exists()) {
+            assertTrue(false);
+        }
         try {
             FileLoader.loadROM(nesFile);
         } catch (BadRomError e) {
