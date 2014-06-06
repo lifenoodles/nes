@@ -1,10 +1,11 @@
 package com.lifenoodles.nes.emulator;
 
-import com.lifenoodles.nes.exceptions.BadRomError;
+import com.lifenoodles.nes.exceptions.BadRomException;
 import junit.framework.TestCase;
 
 import java.io.File;
 import java.io.IOError;
+import java.io.IOException;
 
 public class FileLoaderTest extends TestCase {
     public void testNoFileExists() {
@@ -12,10 +13,9 @@ public class FileLoaderTest extends TestCase {
         try {
             FileLoader.loadROM(noFile);
             fail("IOException not thrown.");
-        } catch (IOError e) {
-            assertTrue(true);
-        } catch (BadRomError e) {
-            assertTrue(false);
+        } catch (Exception e) {
+            assertTrue("IOException not thrown.",
+                    e instanceof IOException);
         }
     }
 
@@ -24,10 +24,9 @@ public class FileLoaderTest extends TestCase {
         try {
             FileLoader.loadROM(badRom);
             fail("BadRomException not thrown.");
-        } catch (IOError e) {
-            assertTrue(false);
-        } catch (BadRomError e) {
-            assertTrue(true);
+        } catch (Exception e) {
+            assertTrue("BadRomException not thrown.",
+                    e instanceof BadRomException);
         }
     }
 

@@ -1,8 +1,9 @@
 package com.lifenoodles.nes.emulator;
 
-import com.lifenoodles.nes.exceptions.BadRomError;
+import com.lifenoodles.nes.exceptions.BadRomException;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author lifenoodles
@@ -10,7 +11,7 @@ import java.io.File;
  */
 
 public class FileLoader {
-    public static ROM loadROM(File file) throws BadRomError {
+    public static ROM loadROM(File file) throws BadRomException, IOException {
         return new ROM();
     }
 }
