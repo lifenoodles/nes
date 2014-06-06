@@ -3,7 +3,6 @@ package com.lifenoodles.nes.emulator;
 import com.lifenoodles.nes.exceptions.BadRomError;
 
 import java.io.File;
-import java.io.IOError;
 
 /**
  * @author lifenoodles
