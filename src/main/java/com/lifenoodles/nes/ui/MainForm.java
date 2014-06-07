@@ -29,7 +29,6 @@ public class MainForm {
     }
 
     public MainForm show() {
-//        frame.getContentPane().setMinimumSize(new Dimension(250, 250));
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
