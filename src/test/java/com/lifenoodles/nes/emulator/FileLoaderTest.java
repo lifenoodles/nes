@@ -4,7 +4,6 @@ import com.lifenoodles.nes.exceptions.BadRomException;
 import junit.framework.TestCase;
 
 import java.io.File;
-import java.io.IOError;
 import java.io.IOException;
 
 public class FileLoaderTest extends TestCase {
@@ -31,7 +30,8 @@ public class FileLoaderTest extends TestCase {
     }
 
     public void testLoadROM() {
-        File nesFile = new File("real-nes-file");
+        File nesFile = new File(String.format(
+                "resources-test%snestest.nes", File.separator));
         try {
             FileLoader.loadROM(nesFile);
             assertTrue(true);
