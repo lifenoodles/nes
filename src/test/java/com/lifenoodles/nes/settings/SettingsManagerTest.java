@@ -7,5 +7,5 @@ import junit.framework.TestCase;
  * @author Cian Hatton
  *         created on 08/06/2014.
  */
-public class SettingsManagerTester extends TestCase {
+public class SettingsManagerTest extends TestCase {
 }
