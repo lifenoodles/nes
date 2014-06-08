@@ -19,7 +19,7 @@ public class FileLoader {
 
     public static ROM loadROM(File file) throws BadRomException, IOException {
         if (!file.exists()) {
-            throw new BadRomException("File does not exist.");
+            throw new IOException("File does not exist.");
         }
 
         FileInputStream fileInputStream = new FileInputStream(file);

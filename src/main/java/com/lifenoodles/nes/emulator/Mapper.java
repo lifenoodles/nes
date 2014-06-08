@@ -1,5 +1,6 @@
 package com.lifenoodles.nes.emulator;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,7 +20,7 @@ public enum Mapper {
 
     // set up the mapper map
     static {
-        Arrays.stream(Mapper.values()).map(x -> map.put(x.code, x));
+        Arrays.stream(Mapper.values()).forEach(x -> map.put(x.code, x));
     }
 
     private Mapper(int code) {
