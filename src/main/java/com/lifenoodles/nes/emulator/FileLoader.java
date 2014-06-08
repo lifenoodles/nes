@@ -27,22 +27,35 @@ public class FileLoader {
                 new BufferedInputStream(fileInputStream);
 
         byte[] headerArray = new byte[16];
-        int headerCode = bufferedInputStream.read(headerArray, 0, 16);
+        int headerCode = bufferedInputStream.read(headerArray, 0, headerArray.length);
 
         if (headerCode != 16) {
             throw new BadRomException();
         }
 
+        byte[] trainerArray = new byte[0];
         // if  0-3: Constant $4E $45 $53 $1A ("NES" followed by MS-DOS end-of-file)
         if (headerArray[0] == 0x4E &&
                 headerArray[1] == 0x45 &&
                 headerArray[2] == 0x53 &&
                 headerArray[3] == 0x1A) {
-            if (isTrainerPresent(headerArray)) {
-                byte[] trainerArray = new byte[512];
-            } else {
-                byte[] trainerArray = new byte[0];
-            }
+            if (isTrainerPresent(headerArray)) trainerArray = new byte[512];
+
+            int trainerData = bufferedInputStream.read(trainerArray, 0, trainerArray.length);
+
+
+
+            byte[] prgArray = new byte[16384*headerArray[4]];
+
+            int prgData = bufferedInputStream.read(prgArray, 0, prgArray.length);
+
+            byte[] chrArray = new byte[8192*headerArray[5]];
+
+            int chrData = bufferedInputStream.read(chrArray, 0, chrArray.length);
+
+
+
+
         } else {
             throw new BadRomException("Incorrect byte values in header.");
         }
