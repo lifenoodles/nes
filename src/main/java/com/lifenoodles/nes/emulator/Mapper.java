@@ -11,7 +11,8 @@ import java.util.Map;
  */
 public enum Mapper {
     MMC1(1),
-    UNROM(2);
+    UNROM(2),
+    NULL_MAPPER(256);
 
     private static Map<Integer, Mapper> map = new HashMap<>();
     private final int code;
@@ -23,5 +24,18 @@ public enum Mapper {
 
     private Mapper(int code) {
         this.code = code;
+    }
+
+    /**
+     * returns the correct Mapper enum from the given code, throws
+     * IllegalArgumentException if that mapper does not exist
+     * @param code
+     * @return the mapper
+     */
+    public static Mapper fromCode(int code) {
+        if (!map.containsKey(code)) {
+            throw new IllegalArgumentException("Bad Mapper number.");
+        }
+        return map.get(code);
     }
 }
