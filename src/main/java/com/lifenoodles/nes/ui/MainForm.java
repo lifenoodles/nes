@@ -20,8 +20,8 @@ public class MainForm {
     public MainForm() {
         setupMenu();
         // frame config
-        frame.add(renderCanvas, BorderLayout.CENTER);
-        frame.setPreferredSize(new Dimension(256, 240));
+        renderCanvas.setPreferredSize(new Dimension(256, 240));
+        frame.add(renderCanvas);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
@@ -34,6 +34,7 @@ public class MainForm {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        lwjglController.setRunning(true);
         lwjglController.run();
         return this;
     }
