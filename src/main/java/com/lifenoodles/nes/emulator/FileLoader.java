@@ -19,7 +19,7 @@ public class FileLoader {
 
     public static ROM loadROM(File file) throws BadRomException, IOException {
         if (!file.exists()) {
-            throw new IOException();
+            throw new BadRomException("File does not exist.");
         }
 
         FileInputStream fileInputStream = new FileInputStream(file);
@@ -39,22 +39,28 @@ public class FileLoader {
                 headerArray[1] == 0x45 &&
                 headerArray[2] == 0x53 &&
                 headerArray[3] == 0x1A) {
-            if (isTrainerPresent(headerArray)) trainerArray = new byte[512];
-
+            if (isTrainerPresent(headerArray)) {
+                trainerArray = new byte[512];
+            }
             int trainerData = bufferedInputStream.read(trainerArray, 0, trainerArray.length);
 
-
-
-            byte[] prgArray = new byte[16384*headerArray[4]];
+            if (trainerData != trainerArray.length) {
+                throw new BadRomException;
+            }
+            byte[] prgArray = new byte[16384 * headerArray[4]];
 
             int prgData = bufferedInputStream.read(prgArray, 0, prgArray.length);
 
-            byte[] chrArray = new byte[8192*headerArray[5]];
+            if (prgData != prgArray.length) {
+                throw new BadRomException;
+            }
+            byte[] chrArray = new byte[8192 * headerArray[5]];
 
             int chrData = bufferedInputStream.read(chrArray, 0, chrArray.length);
 
-
-
+            if (chrData != chrArray.length) {
+                throw new BadRomException;
+            }
 
         } else {
             throw new BadRomException("Incorrect byte values in header.");
