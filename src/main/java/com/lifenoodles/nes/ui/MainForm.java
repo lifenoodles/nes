@@ -6,7 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author lifenoodles
+ * Main Form for the emulator, contains a menu bar and a canvas
+ * which contains an embedded lwjgl display
+ * @author Donagh Hatton
  *         created on 06/06/2014.
  */
 public class MainForm {
@@ -16,11 +18,7 @@ public class MainForm {
             new LwjglController(renderCanvas);
 
     public MainForm() {
-        // set up menu bar
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.add(new JMenu("File"));
-        frame.setJMenuBar(menuBar);
-
+        setupMenu();
         // frame config
         frame.add(renderCanvas, BorderLayout.CENTER);
         frame.setPreferredSize(new Dimension(256, 240));
@@ -28,11 +26,26 @@ public class MainForm {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Display the MainForm and initialise associated LwjglController
+     * @return this
+     */
     public MainForm show() {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         lwjglController.run();
+        return this;
+    }
+
+    /**
+     * Initialise the default MenuBar for this form
+     * @return this
+     */
+    private MainForm setupMenu() {
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(new JMenu("File"));
+        frame.setJMenuBar(menuBar);
         return this;
     }
 }
