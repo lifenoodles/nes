@@ -27,8 +27,8 @@ public class FileLoader {
                 new BufferedInputStream(fileInputStream);
 
         byte[] headerArray = new byte[16];
-        int headerCode = bufferedInputStream.read(headerArray, 0, headerArray.length);
-
+        int headerCode = bufferedInputStream.read(
+                headerArray, 0, headerArray.length);
         if (headerCode != 16) {
             throw new BadRomException();
         }
@@ -42,29 +42,30 @@ public class FileLoader {
             if (isTrainerPresent(headerArray)) {
                 trainerArray = new byte[512];
             }
-            int trainerData = bufferedInputStream.read(trainerArray, 0, trainerArray.length);
-
-            if (trainerData != trainerArray.length) {
-                throw new BadRomException();
-            }
-            byte[] prgArray = new byte[16384 * headerArray[4]];
-
-            int prgData = bufferedInputStream.read(prgArray, 0, prgArray.length);
-
-            if (prgData != prgArray.length) {
-                throw new BadRomException();
-            }
-            byte[] chrArray = new byte[8192 * headerArray[5]];
-
-            int chrData = bufferedInputStream.read(chrArray, 0, chrArray.length);
-
-            if (chrData != chrArray.length) {
-                throw new BadRomException();
-            }
-
         } else {
             throw new BadRomException("Incorrect byte values in header.");
         }
-        return new ROM();
+        int trainerData = bufferedInputStream.read(
+                trainerArray, 0, trainerArray.length);
+        if (trainerData != trainerArray.length) {
+            throw new BadRomException();
+        }
+
+        byte[] prgArray = new byte[16384 * headerArray[4]];
+        int prgData = bufferedInputStream.read(
+                prgArray, 0, prgArray.length);
+        if (prgData != prgArray.length) {
+            throw new BadRomException();
+        }
+
+        byte[] chrArray = new byte[8192 * headerArray[5]];
+        int chrData = bufferedInputStream.read(
+                chrArray, 0, chrArray.length);
+
+        if (chrData != chrArray.length) {
+            throw new BadRomException();
+        }
+
+        return new ROM(headerArray, prgArray, chrArray);
     }
 }

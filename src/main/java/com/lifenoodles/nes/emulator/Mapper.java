@@ -10,9 +10,9 @@ import java.util.Map;
  *         created on 08/06/2014.
  */
 public enum Mapper {
+    NULL_MAPPER(0),
     MMC1(1),
-    UNROM(2),
-    NULL_MAPPER(256);
+    UNROM(2);
 
     private static Map<Integer, Mapper> map = new HashMap<>();
     private final int code;
