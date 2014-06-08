@@ -9,6 +9,12 @@ public class ROM {
     public byte[] prgRom;
     public byte[] chrRom;
 
+
+    public ROM()
+    {
+
+    }
+
     public ROM(byte[] header, byte[] prgRom, byte[] chrRom) {
         this.header = new byte[header.length];
         this.prgRom = new byte[prgRom.length];
