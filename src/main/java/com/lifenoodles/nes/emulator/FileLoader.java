@@ -51,7 +51,7 @@ public class FileLoader {
                 trainerArray, 0, trainerArray.length);
         if (trainerBytesRead != trainerArray.length) {
             throw new BadRomException(String.format(
-                    "Trainer in ROM is incorrect length, expected: %i, found: %i",
+                    "Trainer in ROM is incorrect length, expected: %d, found: %d",
                     trainerArray.length, trainerBytesRead));
         }
 
@@ -60,7 +60,7 @@ public class FileLoader {
                 prgRomArray, 0, prgRomArray.length);
         if (prgRomBytesRead != prgRomArray.length) {
             throw new BadRomException(String.format(
-                    "PRGROM is incorrect length, expected: %i, found: %i",
+                    "PRGROM is incorrect length, expected: %d, found: %d",
                     prgRomArray.length, prgRomBytesRead));
         }
 
@@ -70,7 +70,7 @@ public class FileLoader {
 
         if (chrBytesRead != chrRomArray.length) {
             throw new BadRomException(String.format(
-                    "CHRROM is incorrect length, expected: %i, found: %i",
+                    "CHRROM is incorrect length, expected: %d, found: %d",
                     chrRomArray.length, chrBytesRead));
         }
 
