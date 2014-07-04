@@ -12,12 +12,19 @@ import java.awt.*;
  *         created on 07/06/2014.
  */
 public class LwjglController extends EmulatorController {
-    private final int instructionsPerFrame = 1;
-    private final int targetFrameRate = 60;
+    private final int instructionsPerFrame;
+    private final int targetFrameRate;
     private final Canvas parent;
 
-    public LwjglController(Canvas parent) {
+    public LwjglController(final int instructionsPerFrame, final int targetFrameRate,
+                           final Canvas parent) {
+        this.instructionsPerFrame = instructionsPerFrame;
+        this.targetFrameRate = targetFrameRate;
         this.parent = parent;
+    }
+
+    public LwjglController(final Canvas parent) {
+        this(1, 60, parent);
     }
 
     /**

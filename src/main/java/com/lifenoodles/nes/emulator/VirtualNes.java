@@ -7,13 +7,29 @@ package com.lifenoodles.nes.emulator;
  *         created on 08/06/2014.
  */
 public class VirtualNes {
+    private final CPU cpu;
+    private ROM rom;
+
+    public VirtualNes() {
+        this.cpu = new CPU();
+    }
+
+    public VirtualNes(ROM rom) {
+        this();
+        this.rom = rom;
+    }
+
+    public ROM getRom() {
+        return rom;
+    }
+
     /**
-     * Execute the specified number of cycles on the CPU
-     *
-     * @param cycles the number of cycles to execute
-     * @return this
-     */
-    public VirtualNes executeCycles(int cycles) {
+    * Execute the specified number of cycles on the CPU
+    *
+    * @param cycles the number of cycles to execute
+    * @return this
+    */
+    public VirtualNes executeCycles(final int cycles) {
         return this;
     }
 }
