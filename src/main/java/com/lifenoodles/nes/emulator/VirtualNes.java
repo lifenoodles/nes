@@ -10,6 +10,10 @@ public class VirtualNes {
     private final CPU cpu;
     private ROM rom;
 
+    public VirtualNes() {
+        this.cpu = new CPU();
+    }
+
     public VirtualNes(ROM rom) {
         this.cpu = new CPU();
         this.rom = rom;
