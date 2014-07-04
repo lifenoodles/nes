@@ -33,7 +33,6 @@ public class LwjglController extends EmulatorController {
      * VNES instructions will not execute until a ROM has been
      * loaded and the setRunning(boolean) method has been invoked
      */
-
     public void run() {
         setup();
         while (!Display.isCloseRequested()) {
