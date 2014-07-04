@@ -14,7 +14,7 @@ public enum Mapper {
     MMC1(1),
     UNROM(2);
 
-    private static Map<Integer, Mapper> map = new HashMap<>();
+    private final static Map<Integer, Mapper> map = new HashMap<>();
     private final int code;
 
     // set up the mapper map

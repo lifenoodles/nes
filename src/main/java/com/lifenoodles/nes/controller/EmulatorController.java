@@ -12,10 +12,10 @@ import com.lifenoodles.nes.emulator.VirtualNes;
  */
 public abstract class EmulatorController implements Runnable {
     private boolean isRunning = false;
-    private VirtualNes vnes;
+    private final VirtualNes virtualNes;
 
     public EmulatorController() {
-        vnes = new VirtualNes();
+        virtualNes = new VirtualNes();
     }
 
     /**
@@ -37,8 +37,8 @@ public abstract class EmulatorController implements Runnable {
     /**
      * @return the VirtualNes instance being controlled
      */
-    public VirtualNes getVnes() {
-        return vnes;
+    public VirtualNes getVirtualNes() {
+        return virtualNes;
     }
 }
 

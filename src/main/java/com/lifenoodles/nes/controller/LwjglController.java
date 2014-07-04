@@ -12,7 +12,9 @@ import java.awt.*;
  *         created on 07/06/2014.
  */
 public class LwjglController extends EmulatorController {
-    private Canvas parent;
+    private final int instructionsPerFrame = 1;
+    private final int targetFrameRate = 60;
+    private final Canvas parent;
 
     public LwjglController(Canvas parent) {
         this.parent = parent;
@@ -24,7 +26,7 @@ public class LwjglController extends EmulatorController {
      * VNES instructions will not execute until a ROM has been
      * loaded and the setRunning(boolean) method has been invoked
      */
-    @Override
+
     public void run() {
         setup();
         while (!Display.isCloseRequested()) {
@@ -32,14 +34,14 @@ public class LwjglController extends EmulatorController {
             display();
             // Display.sync will sleep this thread until the correct time
             // has passed to ensure a frame rate of it's argument
-            Display.sync(60);
+            Display.sync(targetFrameRate);
         }
         cleanup();
     }
 
     private void update() {
         if (isRunning()) {
-            getVnes().executeCycles(1);
+            getVirtualNes().executeCycles(instructionsPerFrame);
         }
     }
 
