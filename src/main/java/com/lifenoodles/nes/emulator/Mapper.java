@@ -3,6 +3,8 @@ package com.lifenoodles.nes.emulator;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Enum for all supported mappers
@@ -14,12 +16,13 @@ public enum Mapper {
     MMC1(1),
     UNROM(2);
 
-    private final static Map<Integer, Mapper> map = new HashMap<>();
+    private final static Map<Integer, Mapper> map;
     private final int code;
 
     // set up the mapper map
     static {
-        Arrays.stream(Mapper.values()).forEach(x -> map.put(x.code, x));
+        map = Arrays.stream(Mapper.values())
+                .collect(Collectors.toMap(x -> x.code, Function.identity()));
     }
 
     private Mapper(int code) {
