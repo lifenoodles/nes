@@ -12,7 +12,7 @@ import sys
 
 if __name__ == "__main__":
     # run the maven build
-    maven_result = subprocess.call(["mvn", "compile"])
+    maven_result = subprocess.call(["mvn", "package"], shell=True)
     if maven_result != 0:
         print("Error occured during build process, aborting.")
         sys.exit(1)
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     shutil.copy(
         os.path.join(
-            "target", "nes-0.1-SNAPSHOT-jar-with-dependencies.jar"),
+            "target", "nes-0.1-SNAPSHOT.jar"),
         os.path.join("release", "nes-emulator.jar"))
 
     shutil.copy(
