@@ -4,18 +4,12 @@ package com.lifenoodles.nes.emulator;
  * Representation of loaded ROM
  */
 public class ROM {
-    private Mapper mapper;
-    public byte[] header;
-    public byte[] prgRom;
-    public byte[] chrRom;
+    private final Mapper mapper;
+    public final byte[] header;
+    public final byte[] prgRom;
+    public final byte[] chrRom;
 
-
-    public ROM()
-    {
-
-    }
-
-    public ROM(byte[] header, byte[] prgRom, byte[] chrRom) {
+    public ROM(final byte[] header, final byte[] prgRom, final byte[] chrRom) {
         this.header = new byte[header.length];
         this.prgRom = new byte[prgRom.length];
         this.chrRom = new byte[chrRom.length];
@@ -25,9 +19,9 @@ public class ROM {
         this.mapper = Mapper.fromCode(extractMapper(this.header));
     }
 
-    private int extractMapper(byte[] header) {
-        int lowerMapper = header[6] & 0xF0;
-        int upperMapper = header[7] & 0xF0;
+    private int extractMapper(final byte[] header) {
+        final int lowerMapper = header[6] & 0xF0;
+        final int upperMapper = header[7] & 0xF0;
         return (upperMapper << 4) | lowerMapper;
     }
 }
