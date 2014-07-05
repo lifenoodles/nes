@@ -5,8 +5,8 @@ import java.util.stream.IntStream;
 
 /**
  * Class to represent an arbitrary slice of NES memory,
- * allows for read/write mirroring to be set up via registering addresses that should resolve
- * to the same base address
+ * allows for read/write mirroring to be set up via registering addresses that
+ * should resolve to the same base address
  *
  * Created by donagh on 7/4/14.
  */
@@ -48,26 +48,30 @@ public class Memory {
     }
 
     /**
-     * Register one or more address as read mirroring. Reads from these addresses will return the
-     * value in the mirrored address.
+     * Register one or more address as read mirroring. Reads from these
+     * addresses will return the value in the mirrored address.
      * @param address base address to mirror reads from
-     * @param mirroredAddress list of address that should be mirrored from the base address
+     * @param mirroredAddress list of address that should be mirrored from
+     *                        the base address
      * @return this
      */
-    public Memory registerReadMirror(final int address, final int ... mirroredAddress) {
+    public Memory registerReadMirror(final int address,
+                                     final int ... mirroredAddress) {
         assert(readMirror.length > address);
         Arrays.stream(mirroredAddress).forEach(x -> readMirror[x] = address);
         return this;
     }
 
     /**
-     * Register one or more address as write mirroring. Writes to these addresses will write to the
-     * value in the mirrored address.
+     * Register one or more address as write mirroring. Writes to these
+     * addresses will write to the value in the mirrored address.
      * @param address base address to mirror write to
-     * @param mirroredAddress list of address that should mirror writes to the base address
+     * @param mirroredAddress list of address that should mirror writes to the
+     *                        base address
      * @return this
      */
-    public Memory registerWriteMirror(final int address, final int ... mirroredAddress) {
+    public Memory registerWriteMirror(final int address,
+                                      final int ... mirroredAddress) {
         assert (writeMirror.length > address);
         Arrays.stream(mirroredAddress).forEach(x -> writeMirror[x] = address);
         return this;

@@ -1,7 +1,6 @@
 package com.lifenoodles.nes.emulator;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -25,7 +24,7 @@ public enum Mapper {
                 .collect(Collectors.toMap(x -> x.code, Function.identity()));
     }
 
-    private Mapper(int code) {
+    private Mapper(final int code) {
         this.code = code;
     }
 
@@ -35,7 +34,7 @@ public enum Mapper {
      * @param code
      * @return the mapper
      */
-    public static Mapper fromCode(int code) {
+    public static Mapper fromCode(final int code) {
         if (!map.containsKey(code)) {
             throw new IllegalArgumentException("Bad Mapper number.");
         }

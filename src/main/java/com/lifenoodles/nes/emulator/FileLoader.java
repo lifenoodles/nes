@@ -10,9 +10,26 @@ import java.io.*;
  */
 
 public class FileLoader {
+    private static final int HEADER_LENGTH = 16;
+    private static final int TRAINER_LENGTH = 512;
+    private static final int PRG_ROM_LENGTH = 16384;
+    private static final int CHR_ROM_LENGTH = 8192;
+
     private static boolean isTrainerPresent(byte[] header) {
-        assert header.length == 16;
+        assert header.length == HEADER_LENGTH;
         return (header[6] & 0b100) > 0;
+    }
+
+    /**
+     * Determines if the header is good
+     * @param header the header array
+     * @return boolean indicating whether or not the header is good
+     */
+    private static boolean isGoodHeader(final byte[] header) {
+        assert(header.length == 16);
+        // if  0-3: Constant $4E $45 $53 $1A
+        return header[0] == 0x4E && header[1] == 0x45 &&
+                header[2] == 0x53 && header[3] == 0x1A;
     }
 
     public static ROM loadROM(File file) throws BadRomException, IOException {
@@ -24,29 +41,19 @@ public class FileLoader {
         final BufferedInputStream bufferedInputStream =
                 new BufferedInputStream(fileInputStream);
 
-        final byte[] headerArray = new byte[16];
+        final byte[] headerArray = new byte[HEADER_LENGTH];
         final int headerBytesRead = bufferedInputStream.read(
                 headerArray, 0, headerArray.length);
-        if (headerBytesRead != 16) {
+        if (headerBytesRead != HEADER_LENGTH) {
             throw new BadRomException("Incorrect header length.");
         }
 
-        // if  0-3: Constant $4E $45 $53 $1A ("NES" followed by MS-DOS end-of-file)
-        if (headerArray[0] == 0x4E &&
-                headerArray[1] == 0x45 &&
-                headerArray[2] == 0x53 &&
-                headerArray[3] == 0x1A) {
-        } else {
+        if (!isGoodHeader(headerArray)) {
             throw new BadRomException("Incorrect byte values in header");
         }
 
-        final byte[] trainerArray;
-        if (isTrainerPresent(headerArray)) {
-            trainerArray = new byte[512];
-        } else {
-            trainerArray = new byte[0];
-        }
-
+        final byte[] trainerArray = isTrainerPresent(headerArray)
+                ? new byte[TRAINER_LENGTH] : new byte[0];
         final int trainerBytesRead = bufferedInputStream.read(
                 trainerArray, 0, trainerArray.length);
         if (trainerBytesRead != trainerArray.length) {
@@ -55,7 +62,7 @@ public class FileLoader {
                     trainerArray.length, trainerBytesRead));
         }
 
-        final byte[] prgRomArray = new byte[16384 * headerArray[4]];
+        final byte[] prgRomArray = new byte[PRG_ROM_LENGTH * headerArray[4]];
         final int prgRomBytesRead = bufferedInputStream.read(
                 prgRomArray, 0, prgRomArray.length);
         if (prgRomBytesRead != prgRomArray.length) {
@@ -64,7 +71,7 @@ public class FileLoader {
                     prgRomArray.length, prgRomBytesRead));
         }
 
-        final byte[] chrRomArray = new byte[8192 * headerArray[5]];
+        final byte[] chrRomArray = new byte[CHR_ROM_LENGTH * headerArray[5]];
         final int chrBytesRead = bufferedInputStream.read(
                 chrRomArray, 0, chrRomArray.length);
 

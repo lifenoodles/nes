@@ -19,7 +19,7 @@ public class CPU {
 
         public final int bitPosition;
 
-        private StatusFlag(int bitPosition) {
+        private StatusFlag(final int bitPosition) {
             this.bitPosition = bitPosition;
         }
     }
@@ -100,7 +100,7 @@ public class CPU {
      * @param status the new status for the flag
      * @return this
      */
-    public CPU setStatusFlag(StatusFlag flag, final boolean status) {
+    public CPU setStatusFlag(final StatusFlag flag, final boolean status) {
         if (status) {
             processorStatus |= (0x80 >> flag.bitPosition);
         } else {
