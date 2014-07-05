@@ -1,27 +1,24 @@
 package com.lifenoodles.nes.emulator;
 
+import java.util.Arrays;
+
 /**
  * Representation of loaded ROM
  */
 public class ROM {
     private final Mapper mapper;
-    public final byte[] header;
-    public final byte[] prgRom;
-    public final byte[] chrRom;
+    public final int[] header;
+    public final int[] prgRom;
+    public final int[] chrRom;
 
-    public ROM(final byte[] header, final byte[] prgRom, final byte[] chrRom) {
-        this.header = new byte[header.length];
-        this.prgRom = new byte[prgRom.length];
-        this.chrRom = new byte[chrRom.length];
-        System.arraycopy(header, 0, this.header, 0, header.length);
-        System.arraycopy(prgRom, 0, this.prgRom, 0, prgRom.length);
-        System.arraycopy(chrRom, 0, this.chrRom, 0, chrRom.length);
+    public ROM(final int[] header, final int[] prgRom, final int[] chrRom) {
+        this.header = Arrays.stream(header).toArray();
+        this.prgRom = Arrays.stream(prgRom).toArray();
+        this.chrRom = Arrays.stream(chrRom).toArray();
         this.mapper = Mapper.fromCode(extractMapper(this.header));
     }
 
-    private int extractMapper(final byte[] header) {
-        final int lowerMapper = header[6] & 0xF0;
-        final int upperMapper = header[7] & 0xF0;
-        return (upperMapper << 4) | lowerMapper;
+    private int extractMapper(final int[] header) {
+        return ((header[7] & 0xF0) << 4) | (header[6] & 0xF0);
     }
 }
