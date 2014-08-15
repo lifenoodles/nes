@@ -11,10 +11,19 @@ public class ROM {
     public final int[] prgRom;
     public final int[] chrRom;
 
-    public ROM(final int[] header, final int[] prgRom, final int[] chrRom) {
-        this.header = Arrays.stream(header).toArray();
-        this.prgRom = Arrays.stream(prgRom).toArray();
-        this.chrRom = Arrays.stream(chrRom).toArray();
+    public ROM(final byte[] header, final byte[] prgRom, final byte[] chrRom) {
+        this.header = new int[header.length];
+        for (int i = 0; i < header.length; ++i) {
+            this.header[i] = header[i];
+        }
+        this.prgRom = new int[prgRom.length];
+        for (int i = 0; i < prgRom.length; ++i) {
+            this.prgRom[i] = prgRom[i];
+        }
+        this.chrRom = new int[chrRom.length];
+        for (int i = 0; i < chrRom.length; ++i) {
+            this.chrRom[i] = chrRom[i];
+        }
         this.mapper = Mapper.fromCode(extractMapper(this.header));
     }
 
