@@ -15,6 +15,16 @@
   </properties>
 
   <repositories>
+    <repository>
+      <id>lifenoodles-repo</id>
+      <url>http://lifenoodles.com/repository</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
   </repositories>
 
   <build>
@@ -97,6 +107,12 @@
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.lifenoodles.jargparse</groupId>
+      <artifactId>jargparse</artifactId>
+      <version>1.0</version>
     </dependency>
   </dependencies>
 </project>
