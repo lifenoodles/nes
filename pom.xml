@@ -84,6 +84,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>2.4</version>
         <configuration>
           <archive>
             <manifestEntries>
@@ -112,7 +113,7 @@
     <dependency>
       <groupId>com.lifenoodles.jargparse</groupId>
       <artifactId>jargparse</artifactId>
-      <version>1.0</version>
+      <version>1.0.0</version>
     </dependency>
   </dependencies>
 </project>
