@@ -6,6 +6,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Manager for settings files
@@ -20,26 +21,79 @@ public class SettingsManager {
 
 
 
-    public SettingsManager(String settingsIdentifier) throws IOException {
+    public SettingsManager(String settingsIdentifier) {
         if (!settingsDir.exists()) {
             settingsDir.mkdir();
         }
         settingsFile = new File(settingsDir, settingsIdentifier);
         if (!settingsFile.exists()) {
-
-            settingsFile.createNewFile();
-
-
+            try {
+                settingsFile.createNewFile();
+            } catch (IOException e) {
+                // Do something sensible here to handle errors
+                e.printStackTrace();
+            }
         }
 
-        FileReader reader = new FileReader(settingsFile);
-
-        BufferedReader bufferedReader = new BufferedReader(reader);
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            String[] lineArray = line.trim().split(":");
-            map.put(lineArray[0], lineArray[1]);
+        FileReader reader = null;
+        try {
+            reader = new FileReader(settingsFile);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                String[] lineArray = line.trim().split(":");
+                map.put(lineArray[0], lineArray[1]);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+    /**
+     * Clear the specific named setting from the settingsManager
+     *
+     * @param name the setting to remove
+     */
+    public void remove(final String name) {
+
+    }
+
+    /**
+     * Return the string value for the setting requested or Empty
+     *
+     * @param setting the setting key
+     * @return the setting value or empty
+     */
+    public Optional<String> get(String setting) {
+        return Optional.empty();
+    }
+
+    /**
+     * Delete the settings cache associated with this name
+     */
+    public void delete() {
+
+    }
+
+    /**
+     * returns true if the setting exists
+     *
+     * @param setting the setting to check for
+     * @return true if the setting exists
+     */
+    public boolean contains(String setting) {
+        return false;
+    }
+
+    /**
+     * Put this setting into the manager
+     *
+     * @param setting the setting to add
+     * @param value the value of the setting
+     */
+    public void put(String setting, String value) {
     }
 
     //Files.exists(settings)
