@@ -1,6 +1,5 @@
 package com.lifenoodles.nes.settings;
 
-import com.lifenoodles.nes.settings.SettingsManager;
 import junit.framework.TestCase;
 
 import java.io.File;
