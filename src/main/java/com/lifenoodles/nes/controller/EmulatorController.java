@@ -11,8 +11,8 @@ import com.lifenoodles.nes.emulator.VirtualNes;
  *         created on 08/06/2014.
  */
 public abstract class EmulatorController implements Runnable {
-    private boolean isRunning = false;
     private final VirtualNes virtualNes;
+    private boolean isRunning = false;
 
     public EmulatorController() {
         virtualNes = new VirtualNes();

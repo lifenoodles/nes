@@ -1,15 +1,16 @@
 package com.lifenoodles.nes.emulator;
 
-import java.util.Arrays;
-
 /**
  * Representation of loaded ROM
+ *
+ * @author Donagh Hatton
+ *         created on 07/04/2014.
  */
 public class ROM {
-    private final Mapper mapper;
     public final int[] header;
     public final int[] prgRom;
     public final int[] chrRom;
+    private final Mapper mapper;
 
     public ROM(final byte[] header, final byte[] prgRom, final byte[] chrRom) {
         this.header = new int[header.length];

@@ -8,6 +8,7 @@ import java.awt.*;
 
 /**
  * EmulatorController implementation based on LWJGL for rendering and timing
+ *
  * @author Donagh Hatton
  *         created on 07/06/2014.
  */
@@ -17,7 +18,7 @@ public class LwjglController extends EmulatorController {
     private final Canvas parent;
 
     public LwjglController(final int instructionsPerFrame, final int targetFrameRate,
-                           final Canvas parent) {
+            final Canvas parent) {
         this.instructionsPerFrame = instructionsPerFrame;
         this.targetFrameRate = targetFrameRate;
         this.parent = parent;

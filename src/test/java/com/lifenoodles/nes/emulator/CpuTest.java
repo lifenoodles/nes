@@ -1,10 +1,12 @@
 package com.lifenoodles.nes.emulator;
 
 import junit.framework.TestCase;
+
 import java.util.Arrays;
 
 /**
- * Created by donagh on 7/4/14.
+ * @author Donagh Hatton
+ *         created on 7/4/14.
  */
 public class CpuTest extends TestCase {
     public void testCpuStatusFlags() {

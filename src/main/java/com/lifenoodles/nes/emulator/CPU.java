@@ -7,23 +7,6 @@ package com.lifenoodles.nes.emulator;
  */
 
 public class CPU {
-    public enum StatusFlag {
-        CARRY_FLAG(0),
-        ZERO_FLAG(1),
-        INTERRUPT_DISABLE_FLAG(2),
-        DECIMAL_MODE_FLAG(3),
-        BREAK_FLAG(4),
-        UNUSED_FLAG(5),
-        OVERFLOW_FLAG(6),
-        NEGATIVE_FLAG(7);
-
-        public final int bitPosition;
-
-        private StatusFlag(final int bitPosition) {
-            this.bitPosition = bitPosition;
-        }
-    }
-
     private int programCounter;
     private int stackPointer;
     private int processorStatus;
@@ -87,6 +70,7 @@ public class CPU {
 
     /**
      * Determine if the given status flag is set
+     *
      * @param flag the flag to check
      * @return the status of the flag
      */
@@ -96,7 +80,8 @@ public class CPU {
 
     /**
      * Set a given status CPU status flag
-     * @param flag the flag to set
+     *
+     * @param flag   the flag to set
      * @param status the new status for the flag
      * @return this
      */
@@ -107,5 +92,22 @@ public class CPU {
             processorStatus &= ~(0x80 >> flag.bitPosition) & 0xFF;
         }
         return this;
+    }
+
+    public enum StatusFlag {
+        CARRY_FLAG(0),
+        ZERO_FLAG(1),
+        INTERRUPT_DISABLE_FLAG(2),
+        DECIMAL_MODE_FLAG(3),
+        BREAK_FLAG(4),
+        UNUSED_FLAG(5),
+        OVERFLOW_FLAG(6),
+        NEGATIVE_FLAG(7);
+
+        public final int bitPosition;
+
+        private StatusFlag(final int bitPosition) {
+            this.bitPosition = bitPosition;
+        }
     }
 }

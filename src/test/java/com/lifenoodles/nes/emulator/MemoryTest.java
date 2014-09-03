@@ -3,9 +3,9 @@ package com.lifenoodles.nes.emulator;
 import junit.framework.TestCase;
 
 /**
- * Created by donagh on 7/4/14.
+ * @author Donagh Hatton
+ *         created on 7/4/14.
  */
-
 public class MemoryTest extends TestCase {
     public void testReadWrite() {
         final Memory memory = new Memory(100);
@@ -38,7 +38,9 @@ public class MemoryTest extends TestCase {
         try {
             memory.write(10, 256);
             fail("No assertion error thrown.");
-        } catch (AssertionError e) { }
+        } catch (AssertionError e) {
+            //pass
+        }
     }
 
     public void testWriteIllegalAddress() {
@@ -46,7 +48,9 @@ public class MemoryTest extends TestCase {
         try {
             memory.write(100, 255);
             fail("No assertion error thrown.");
-        } catch (AssertionError e) { }
+        } catch (AssertionError e) {
+            //pass
+        }
     }
 
     public void testReadIllegalAddress() {
@@ -54,6 +58,8 @@ public class MemoryTest extends TestCase {
         try {
             memory.read(100);
             fail("No assertion error thrown.");
-        } catch (AssertionError e) { }
+        } catch (AssertionError e) {
+            //pass
+        }
     }
 }

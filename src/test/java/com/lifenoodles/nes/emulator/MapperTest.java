@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 
 /**
  * Unit tests for the Mapper
+ *
  * @author Donagh Hatton
  *         created on 08/06/2014.
  */

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 /**
  * Enum for all supported mappers
+ *
  * @author Donagh Hatton
  *         created on 08/06/2014.
  */
@@ -31,7 +32,8 @@ public enum Mapper {
     /**
      * returns the correct Mapper enum from the given code, throws
      * IllegalArgumentException if that mapper does not exist
-     * @param code
+     *
+     * @param code mapper code
      * @return the mapper
      */
     public static Mapper fromCode(final int code) {

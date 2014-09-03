@@ -5,9 +5,6 @@ import org.lifenoodles.jargparse.AutoOptionParser;
 import org.lifenoodles.jargparse.Option;
 import org.lifenoodles.jargparse.OptionSet;
 
-/**
- * Hello world!
- */
 public class Main {
     public static void main(String[] args) {
         OptionSet optionSet = new AutoOptionParser("nes")
