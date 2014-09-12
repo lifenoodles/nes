@@ -9,6 +9,12 @@ import java.util.Arrays;
  *         created on 7/4/14.
  */
 public class CpuTest extends TestCase {
+    public void testNewCpuStatusFlagsFalse() {
+        CPU cpu = new CPU();
+        assertTrue(Arrays.stream(CPU.StatusFlag.values())
+                .noneMatch(cpu::isStatusFlagSet));
+    }
+
     public void testCpuStatusFlags() {
         final CPU cpu = new CPU();
         Arrays.stream(CPU.StatusFlag.values()).forEach(flag -> {
