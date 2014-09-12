@@ -12,7 +12,7 @@ import java.util.stream.IntStream;
  *         created on 07/04/2014.
  */
 public class Memory {
-    private final int[] array;
+    private final byte[] array;
     private final int[] readMirror;
     private final int[] writeMirror;
 
@@ -20,8 +20,8 @@ public class Memory {
      * @param size The size in bytes of the memory region
      */
     public Memory(final int size) {
-        array = new int[size];
-        readMirror = IntStream.range(0, array.length - 1).toArray();
+        array = new byte[size];
+        readMirror = IntStream.range(0, array.length - 1).map(x -> (byte) x).toArray();
         writeMirror = Arrays.stream(readMirror).toArray();
     }
 
@@ -32,9 +32,8 @@ public class Memory {
      * @param value   the value to write 0 <= value <= 255
      * @return this
      */
-    public Memory write(final int address, final int value) {
+    public Memory write(final int address, final byte value) {
         assert (writeMirror.length > address);
-        assert (value < 256);
         array[writeMirror[address]] = value;
         return this;
     }
@@ -45,7 +44,7 @@ public class Memory {
      * @param address the address to read from, less than the size of the Memory
      * @return the byte read
      */
-    public int read(final int address) {
+    public byte read(final int address) {
         assert (readMirror.length > address);
         return array[readMirror[address]];
     }
