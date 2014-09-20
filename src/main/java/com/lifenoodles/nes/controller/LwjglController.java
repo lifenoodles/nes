@@ -17,8 +17,8 @@ public class LwjglController extends EmulatorController {
     private final int targetFrameRate;
     private final Canvas parent;
 
-    public LwjglController(final int instructionsPerFrame, final int targetFrameRate,
-            final Canvas parent) {
+    public LwjglController(final int instructionsPerFrame,
+            final int targetFrameRate, final Canvas parent) {
         this.instructionsPerFrame = instructionsPerFrame;
         this.targetFrameRate = targetFrameRate;
         this.parent = parent;
@@ -46,10 +46,8 @@ public class LwjglController extends EmulatorController {
         cleanup();
     }
 
-    private void update() {
-        if (isRunning()) {
-            getVirtualNes().executeCycles(instructionsPerFrame);
-        }
+    private void cleanup() {
+        Display.destroy();
     }
 
     private void display() {
@@ -67,7 +65,9 @@ public class LwjglController extends EmulatorController {
         }
     }
 
-    private void cleanup() {
-        Display.destroy();
+    private void update() {
+        if (isRunning()) {
+            getVirtualNes().executeCycles(instructionsPerFrame);
+        }
     }
 }
