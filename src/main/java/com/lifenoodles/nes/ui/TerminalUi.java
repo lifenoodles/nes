@@ -28,16 +28,21 @@ public class TerminalUi {
     }
 
     private void printHelp() {
-        System.out.println("h|help -> Show this message");
-        System.out.println("s|set x -> Set active controller to x");
+        System.out.println("----------");
+        Arrays.stream(Command.values()).forEach(x ->
+            System.out.printf("%s : %s%s", x.pattern, x.description,
+                    System.lineSeparator()));
+        System.out.println("----------");
     }
 
     private void printStatus() {
+        System.out.println("----------");
         System.out.printf("Controllers: %d%s", terminalControllers.size(),
                 System.lineSeparator());
         System.out.printf("Active Controller: %s%s",
                 activeController.map(String::valueOf).orElse("None"),
                 System.lineSeparator());
+        System.out.println("----------");
     }
 
     private void handleInput() {
@@ -55,14 +60,16 @@ public class TerminalUi {
     }
 
     enum Command {
-        QUIT("q(uit)?"),
-        HELP("h(elp)?"),
-        STATUS("s(tatus)?");
+        QUIT("q(uit)?", "quit"),
+        HELP("h(elp)?", "print this message"),
+        STATUS("s(tatus)?", "print a status message");
 
         public final String pattern;
+        public final String description;
 
-        private Command(final String pattern) {
+        private Command(final String pattern, final String description) {
             this.pattern = pattern;
+            this.description = description;
         }
     }
 }
