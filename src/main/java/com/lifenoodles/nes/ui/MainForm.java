@@ -14,8 +14,8 @@ import java.awt.*;
 public class MainForm {
     private JFrame frame = new JFrame("NubNES");
     private Canvas renderCanvas = new Canvas();
-    private LwjglController lwjglController =
-            new LwjglController(renderCanvas);
+    private LwjglController lwjglController = new LwjglController(renderCanvas);
+    private Thread controllerThread = new Thread(lwjglController);
 
     public MainForm() {
         setupMenu();
@@ -35,7 +35,7 @@ public class MainForm {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         lwjglController.setRunning(true);
-        lwjglController.run();
+        controllerThread.start();
         return this;
     }
 
